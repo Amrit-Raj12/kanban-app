@@ -5,12 +5,14 @@ import Header from '@/components/Header/Header'
 import styles from '@/styles/Home.module.css'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
+import Cookies from 'js-cookie'
 
 export default function Home() {
 
-  const [token, setToken] = useState(
-    (typeof window !== 'undefined' && (localStorage.getItem('token'))) || []
-  )
+  // const [token, setToken] = useState(
+  //   (typeof window !== 'undefined' && (localStorage.getItem('token'))) || []
+  // )
+  let token = Cookies.get('token')
   const router = useRouter()
 
   useEffect(() => {

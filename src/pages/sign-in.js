@@ -2,6 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Cookies from "js-cookie"
+import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { profileAction } from "../redux/profileSlice";
+import { Eye, EyeOff } from "react-feather";
 
 const SignIn = () => {
 
@@ -10,9 +14,14 @@ const SignIn = () => {
         password: "",
     })
 
-    const [token, setToken] = useState(
-        (typeof window !== "undefined" && localStorage.getItem("token")) || []
-    );
+    const [show, setShow] = useState(false)
+
+    const dispatch = useDispatch()
+
+    // const [token, setToken] = useState(
+    //     (typeof window !== "undefined" && localStorage.getItem("token")) || []
+    // );
+    let token = Cookies.get('token')
     const router = useRouter();
 
     useEffect(() => {
@@ -24,7 +33,7 @@ const SignIn = () => {
     const handleLogin = async (e) => {
         e.preventDefault()
         const response = await fetch(
-            `/login`,
+            'https://kanban-server.up.railway.app/users/login',
             {
                 method: "POST",
                 headers: {
@@ -37,7 +46,7 @@ const SignIn = () => {
         const resp = await response.json()
 
         if (resp.success) {
-            //   dispatch(profileAction.setProfile(resp))
+              dispatch(profileAction.setProfile(resp))
             Cookies.set("token", resp?.token, {
                 expires: 7,
                 sameSite: "strict",
@@ -69,8 +78,8 @@ const SignIn = () => {
                     </div>
 
                     <div className="txt_field">
-                        <input type="password" onChange={(e) => setUser({ ...user, password: e.target.value })} required />
-                        <span></span>
+                        <div className="eye-icon-box">{show ? <Eye onClick={() => setShow(!show)}/> : <EyeOff onClick={() => setShow(!show)} />}</div>
+                        <input type={show ? "text" : "password"} onChange={(e) => setUser({ ...user, password: e.target.value })} autoComplete="on" required />
                         <label>Password</label>
                     </div>
                     <div className="pass">Forgot password?</div>

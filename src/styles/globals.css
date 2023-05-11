@@ -149,3 +149,12 @@ p{
   transition: .5s;
   color: #666666;
 }
+
+.login-container .txt_field .eye-icon-box{
+  /* float: right;
+  margin-right: .5rem; */
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+  top: .5rem;
+}
