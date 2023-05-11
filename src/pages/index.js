@@ -4,97 +4,105 @@ import Editable from '@/components/Editable/Editable'
 import Header from '@/components/Header/Header'
 import styles from '@/styles/Home.module.css'
 import { useEffect, useState } from 'react'
-
+import { useRouter } from 'next/router'
 
 export default function Home() {
 
-  // const [boards, setBoards] = useState(
-  //   (typeof window !== 'undefined'&& JSON.parse(localStorage.getItem('app'))) || []
-  // )
+  const [token, setToken] = useState(
+    (typeof window !== 'undefined' && (localStorage.getItem('token'))) || []
+  )
+  const router = useRouter()
+
+  useEffect(() => {
+    if (token?.length === 0) {
+      router.push('/sign-in')
+    }
+  }, [token, router])
+
   const [boards, setBoards] = useState([
     {
-        "id": 1682658186307.68,
-        "title": "To DO",
-        "cards": [
+      "id": 1682658186307.68,
+      "title": "To DO",
+      "cards": [
+        {
+          "id": 1682658386577.8345,
+          "title": "UI: Create New Dashboard",
+          "labels": [
             {
-                "id": 1682658386577.8345,
-                "title": "UI: Create New Dashboard",
-                "labels": [
-                    {
-                        "text": "Frontend",
-                        "color": "#9975bd"
-                    }
-                ],
-                "tasks": [
-                    {
-                        "id": 1682659388934.1326,
-                        "text": "Convert Dashboard XD into React.",
-                        "completed": false
-                    },
-                    {
-                        "id": 1682659396918.054,
-                        "text": "Implment all Dashborad Funtionalities.",
-                        "completed": false
-                    }
-                ],
-                "date": "2023-04-28",
-                "desc": "Created Dashborad UI and implement required funtionalities."
+              "text": "Frontend",
+              "color": "#9975bd"
+            }
+          ],
+          "tasks": [
+            {
+              "id": 1682659388934.1326,
+              "text": "Convert Dashboard XD into React.",
+              "completed": false
             },
             {
-              "id": 1682658386577.8346,
-              "title": "API: Integrate Auth API",
-              "labels": [
-                  {
-                      "text": "Frontend",
-                      "color": "#9975bd"
-                  }
-              ],
-              "tasks": [
-                  {
-                      "id": 1682659388934.1327,
-                      "text": "Create all auth UIs",
-                      "completed": false
-                  },
-                  {
-                      "id": 1682659396918.055,
-                      "text": "Integrate all auth API with their respective UIs",
-                      "completed": false
-                  }
-              ],
-              "date": "2023-04-28",
-              "desc": "Integrate all auth APIs with their respective UIs."
-          }
-        ]
+              "id": 1682659396918.054,
+              "text": "Implment all Dashborad Funtionalities.",
+              "completed": false
+            }
+          ],
+          "date": "2023-04-28",
+          "desc": "Created Dashborad UI and implement required funtionalities."
+        },
+        {
+          "id": 1682658386577.8346,
+          "title": "API: Integrate Auth API",
+          "labels": [
+            {
+              "text": "Frontend",
+              "color": "#9975bd"
+            }
+          ],
+          "tasks": [
+            {
+              "id": 1682659388934.1327,
+              "text": "Create all auth UIs",
+              "completed": false
+            },
+            {
+              "id": 1682659396918.055,
+              "text": "Integrate all auth API with their respective UIs",
+              "completed": false
+            }
+          ],
+          "date": "2023-04-28",
+          "desc": "Integrate all auth APIs with their respective UIs."
+        }
+      ]
     },
     {
-        "id": 1682658195306.214,
-        "title": "In Progress",
-        "cards": [
-          {
-            "id": 1682658386577.8347,
-            "title": "UI: Create All UIs",
-            "labels": [
-                {
-                    "text": "Frontend",
-                    "color": "#9975bd"
-                }
-            ],
-            "tasks": [
-                {
-                    "id": 1682659388934.1328,
-                    "text": "Task1",
-                    "completed": true
-                },
-                {
-                    "id": 1682659396918.059,
-                    "text": "Task 2",
-                    "completed": false
-                }
-            ],
-            "date": "2023-04-28",
-            "desc": "Integrate all auth APIs with there respective UIs."
+      "id": 1682658195306.214,
+      "title": "In Progress",
+      "cards": [
+        {
+          "id": 1682658386577.8347,
+          "title": "UI: Create All UIs",
+          "labels": [
+            {
+              "text": "Frontend",
+              "color": "#9975bd"
+            }
+          ],
+          "tasks": [
+            {
+              "id": 1682659388934.1328,
+              "text": "Task1",
+              "completed": true
+            },
+            {
+              "id": 1682659396918.059,
+              "text": "Task 2",
+              "completed": false
+            }
+          ],
+          "date": "2023-04-28",
+          "desc": "Integrate all auth APIs with there respective UIs."
         }
-        ]
+      ]
     },
     {
       "id": 1682658195306.210,
@@ -104,128 +112,126 @@ export default function Home() {
           "id": 1682658386577.8348,
           "title": "Create All Auth APIs",
           "labels": [
-              {
-                  "text": "Backend",
-                  "color": "#1ebffa"
-              }
+            {
+              "text": "Backend",
+              "color": "#1ebffa"
+            }
           ],
           "tasks": [
-              {
-                  "id": 1682659388934.1325,
-                  "text": "Created All required auth APIs",
-                  "completed": true
-              },
-              {
-                  "id": 1682659396918.052,
-                  "text": "Add Refresh token",
-                  "completed": true
-              }
+            {
+              "id": 1682659388934.1325,
+              "text": "Created All required auth APIs",
+              "completed": true
+            },
+            {
+              "id": 1682659396918.052,
+              "text": "Add Refresh token",
+              "completed": true
+            }
           ],
           "date": "2023-04-28",
           "desc": "Created All required auth APIs and Add Refresh token."
-      }
+        }
       ]
-  }
-])
+    }
+  ])
 
   const [target, setTarget] = useState({
-    cid:"",
-    bid:""
+    cid: "",
+    bid: ""
   })
 
   const addCard = (title, bid) => {
     const card = {
       id: Date.now() + Math.random(),
       title,
-      labels:[],
-      tasks:[],
-      date:"",
-      desc:""
+      labels: [],
+      tasks: [],
+      date: "",
+      desc: ""
     }
     const index = boards.findIndex((item) => item.id === bid)
-    if(index < 0) return;
+    if (index < 0) return;
 
-    const tempBoards=[...boards]
+    const tempBoards = [...boards]
     tempBoards[index].cards.push(card)
     setBoards(tempBoards)
   }
 
-  const removeCard = (cid,bid) => {
+  const removeCard = (cid, bid) => {
     const bIndex = boards.findIndex((item) => item.id === bid);
-    if(bIndex < 0)return;
+    if (bIndex < 0) return;
     const cIndex = boards[bIndex].cards.findIndex((item) => item.id === cid);
-    if(cIndex < 0)return;
+    if (cIndex < 0) return;
 
-    const tempBoards=[...boards]
-    tempBoards[bIndex].cards.splice(cIndex,1)
+    const tempBoards = [...boards]
+    tempBoards[bIndex].cards.splice(cIndex, 1)
     setBoards(tempBoards)
   }
 
-  const addBoard =(title) => {
+  const addBoard = (title) => {
     setBoards([
       ...boards,
       {
-        id:Date.now() + Math.random(),
+        id: Date.now() + Math.random(),
         title,
-        cards:[],
+        cards: [],
       }
     ])
   }
 
   const removeBoard = (bid) => {
-    const tempBoards = boards.filter(item => item.id !==bid)
+    const tempBoards = boards.filter(item => item.id !== bid)
 
     setBoards(tempBoards)
   }
 
-  const handleDragEnter = (cid,bid) => {
+  const handleDragEnter = (cid, bid) => {
     setTarget({
-      cid,bid
+      cid, bid
     })
   }
 
-  const handleDragEnd = (cid,bid) => {
-    let s_bIndex=0, s_cIndex=0, t_bIndex=0, t_cIndex=0
+  const handleDragEnd = (cid, bid) => {
+    let s_bIndex = 0, s_cIndex = 0, t_bIndex = 0, t_cIndex = 0
 
     // source boardIndex
-    s_bIndex=boards.findIndex((item) => item.id === bid)
-    if(s_bIndex<0) return;
+    s_bIndex = boards.findIndex((item) => item.id === bid)
+    if (s_bIndex < 0) return;
 
     // source cardIndex
-    s_cIndex=boards[s_bIndex].cards?.findIndex((item) => item.id === cid)
-    if(s_cIndex < 0) return;
+    s_cIndex = boards[s_bIndex].cards?.findIndex((item) => item.id === cid)
+    if (s_cIndex < 0) return;
 
     // target boardIndex
-    t_bIndex=boards.findIndex((item) => item.id === target.bid)
-    if(t_bIndex<0) return;
+    t_bIndex = boards.findIndex((item) => item.id === target.bid)
+    if (t_bIndex < 0) return;
 
     // target cardIndex
-    t_cIndex=boards[t_bIndex].cards?.findIndex((item) => item.id === target.cid)
-    if(t_cIndex < 0) return;
+    t_cIndex = boards[t_bIndex].cards?.findIndex((item) => item.id === target.cid)
+    if (t_cIndex < 0) return;
 
     const tempboards = [...boards]
     const tempcard = tempboards[s_bIndex].cards[s_cIndex]
 
-    tempboards[s_bIndex].cards.splice(s_cIndex,1)
-    tempboards[t_bIndex].cards.splice(t_cIndex,0,tempcard)
+    tempboards[s_bIndex].cards.splice(s_cIndex, 1)
+    tempboards[t_bIndex].cards.splice(t_cIndex, 0, tempcard)
 
     setBoards(tempboards)
   }
 
-  const updateCard = (cid,bid,card) => {
+  const updateCard = (cid, bid, card) => {
     const bIndex = boards.findIndex((item) => item.id === bid);
-    if(bIndex < 0)return;
+    if (bIndex < 0) return;
     const cIndex = boards[bIndex].cards.findIndex((item) => item.id === cid);
-    if(cIndex < 0)return;
+    if (cIndex < 0) return;
 
     const tempBoards = [...boards]
     tempBoards[bIndex].cards[cIndex] = card;
     setBoards(tempBoards)
   }
 
-  // useEffect(() => {
-  //   typeof window !== 'undefined' && localStorage.setItem('app', JSON.stringify(boards))
-  // }, [boards])
+
 
   return (
     <div className={styles['app']}>
@@ -236,11 +242,11 @@ export default function Home() {
         <div className={styles['app_boards']}>
           {
             boards.map((item) => (
-              <Board 
-                key={item.id} 
-                board={item} 
-                removeBoard={removeBoard} 
-                addCard={addCard} 
+              <Board
+                key={item.id}
+                board={item}
+                removeBoard={removeBoard}
+                addCard={addCard}
                 removeCard={removeCard}
                 handleDragEnter={handleDragEnter}
                 handleDragEnd={handleDragEnd}
